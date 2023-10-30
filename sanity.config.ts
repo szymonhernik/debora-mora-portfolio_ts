@@ -1,15 +1,15 @@
-import schemas from 'app/sanity/schemas'
+import schemas from '@/sanity/schemas'
 import { defineConfig } from 'sanity'
 import { deskTool } from 'sanity/desk'
 
 const config = defineConfig({
-  projectId: '5juh4upx',
+  projectId: 'lmlevnah',
   dataset: 'production',
-  title: 'portfolio website',
-  apiVersion: '2023-10-30',
+  title: 'Portfolio website',
+  apiVersion: '2023-10-31',
   basePath: '/admin',
   plugins: [deskTool()],
-  schemas: { types: schemas },
+  schema: { types: schemas },
 })
 
 export default config
