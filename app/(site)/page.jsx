@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 import Threejscomp from '@/components/Threejscomp'
-import { getProjects } from '@/sanity/sanity-utils'
+import { getProjects } from '@root/sanity/sanity-utils'
 import Image from 'next/image'
 import Link from 'next/link'
 

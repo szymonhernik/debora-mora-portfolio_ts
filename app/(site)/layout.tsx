@@ -15,10 +15,12 @@ export default function RootLayout({ children }) {
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body>
+      <body className='bg-indigo-200'>
         {/* To avoid FOUT with styled-components wrap Layout with StyledComponentsRegistry https://beta.nextjs.org/docs/styling/css-in-js#styled-components */}
-        <header className='m-4 fixed'>
-          <Link href='/'>+++</Link>
+        <header className='m-4 fixed z-20'>
+          <Link href='/' className='text-amber-700 '>
+            +++
+          </Link>
         </header>
         <Layout>{children}</Layout>
       </body>

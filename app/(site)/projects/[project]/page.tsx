@@ -1,4 +1,4 @@
-import { getProject } from '@/sanity/sanity-utils'
+import { getProject } from '@root/sanity/sanity-utils'
 import Image from 'next/image'
 import Link from 'next/link'
 import { PortableText } from '@portabletext/react'
@@ -11,7 +11,7 @@ export default async function Project({ params }: Props) {
   const slug = params.project
   const project = await getProject(slug)
   return (
-    <div className='m-4'>
+    <div className='mx-auto my-16 w-full flex-col items-center lg:w-4/5'>
       {project.image && (
         <Image src={project.image} alt={project.name} width={250} height={100} className='object-cover rounded-lg ' />
       )}

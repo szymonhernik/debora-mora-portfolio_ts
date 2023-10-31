@@ -1,4 +1,4 @@
-import schemas from '@/sanity/schemas'
+import schemas from '@root/sanity/schemas'
 import { defineConfig } from 'sanity'
 import { deskTool } from 'sanity/desk'
 

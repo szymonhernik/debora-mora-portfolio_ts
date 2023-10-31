@@ -28,8 +28,10 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx",
-    "app/admin/[[...index]]/page.jsx",
-    "src/components/dom/Layout.jsx"
+    "app/(studio)/admin/[[...index]]/page.jsx",
+    "src/components/dom/Layout.jsx",
+    "app/(studio)/layout.jsx",
+    "app/(site)/layout.tsx"
   ],
   "exclude": ["node_modules"]
 }
