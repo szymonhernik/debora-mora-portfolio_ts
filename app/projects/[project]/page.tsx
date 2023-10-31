@@ -12,10 +12,6 @@ export default async function Project({ params }: Props) {
   const project = await getProject(slug)
   return (
     <div className='m-4'>
-      <Link href={'/'} className='font-bold '>
-        {' '}
-        Back
-      </Link>
       {project.image && (
         <Image src={project.image} alt={project.name} width={250} height={100} className='object-cover rounded-lg ' />
       )}

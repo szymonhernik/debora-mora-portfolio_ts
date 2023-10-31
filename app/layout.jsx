@@ -1,9 +1,10 @@
 import { Layout } from '@/components/dom/Layout'
 import '@/global.css'
+import Link from 'next/link'
 
 export const metadata = {
-  title: 'Next.js + Three.js',
-  description: 'A minimal starter for Nextjs + React-three-fiber and Threejs.',
+  title: 'Name of the site',
+  description: 'Description of the site',
 }
 
 export default function RootLayout({ children }) {
@@ -16,6 +17,9 @@ export default function RootLayout({ children }) {
       <head />
       <body>
         {/* To avoid FOUT with styled-components wrap Layout with StyledComponentsRegistry https://beta.nextjs.org/docs/styling/css-in-js#styled-components */}
+        <header className='m-4 fixed'>
+          <Link href='/'>+++</Link>
+        </header>
         <Layout>{children}</Layout>
       </body>
     </html>
