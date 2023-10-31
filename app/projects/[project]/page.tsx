@@ -1,6 +1,7 @@
 import { getProject } from '@/sanity/sanity-utils'
 import Image from 'next/image'
 import Link from 'next/link'
+import { PortableText } from '@portabletext/react'
 
 type Props = {
   params: { project: string }
@@ -20,6 +21,9 @@ export default async function Project({ params }: Props) {
       )}
 
       {project.name}
+      <div>
+        <PortableText value={project.content} />
+      </div>
     </div>
   )
 }
