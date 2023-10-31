@@ -2,6 +2,8 @@ import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 import Threejscomp from '@/components/Threejscomp'
 import { getProjects } from '@/sanity/sanity-utils'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default async function Page() {
   const projects = await getProjects()
@@ -19,7 +21,20 @@ export default async function Page() {
         <h2 className='my-4 text-2xl font-bold  leading-tight'>my projects here</h2>
         <div>
           {projects.map((project) => (
-            <div key={project.id}>{project.name}</div>
+            <Link href={`/projects/${project.slug}`} key={project._id}>
+              <div className='mt-4 flex-col p-4  bg-slate-200 hover:bg-slate-400 trasition'>
+                {project.image && (
+                  <Image
+                    src={project.image}
+                    alt={project.name}
+                    width={250}
+                    height={100}
+                    className='object-cover rounded-lg '
+                  />
+                )}
+                <p className=' w-full'>{project.name}</p>
+              </div>
+            </Link>
           ))}
         </div>
       </section>
