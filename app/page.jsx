@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
+import Threejscomp from '@/components/Threejscomp'
 
 export default async function Page() {
   return (
@@ -11,6 +12,11 @@ export default async function Page() {
           <h1 className='my-4 text-5xl font-bold leading-tight'>Next 3D Starter</h1>
           <p className='mb-8 text-2xl leading-normal'>A minimalist starter for React, React-three-fiber and Threejs.</p>
         </div>
+      </div>
+      <div className='w-full text-center md:w-3/5'>
+        <Suspense>
+          <Threejscomp />
+        </Suspense>
       </div>
     </>
   )
