@@ -3,7 +3,7 @@
     "baseUrl": "./",
     "lib": ["dom", "dom.iterable", "esnext"],
     "paths": {
-      "@/*": ["app/*", "src/*"],
+      "@/*": ["app/*"],
       "@root/*": ["./*"]
     },
     "allowJs": true,
@@ -29,7 +29,7 @@
     "**/*.ts",
     "**/*.tsx",
     "app/(studio)/admin/[[...index]]/page.jsx",
-    "src/components/dom/Layout.jsx",
+    "app/(site-parts)/components/dom/Layout.jsx",
     "app/(studio)/layout.jsx",
     "app/(site)/layout.tsx"
   ],
