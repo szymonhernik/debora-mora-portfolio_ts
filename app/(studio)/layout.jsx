@@ -1,3 +1,4 @@
+import '@/global.css'
 export const metadata = {
   title: 'Name of the site',
   description: 'Description of the site',

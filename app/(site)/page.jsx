@@ -17,8 +17,8 @@ export default async function Page() {
           <p className='mb-8 text-2xl leading-normal'>A minimalist starter for React, React-three-fiber and Threejs.</p>
         </div>
       </div>
-      <section className='mx-auto  w-full flex-col items-center lg:w-4/5'>
-        <h2 className='my-4 text-2xl font-bold  leading-tight'>my projects here</h2>
+      <section className='my-4 mx-auto  w-full flex-col items-center lg:w-4/5'>
+        <h2 className=' text-2xl font-bold  leading-tight'>my projects here</h2>
         <div>
           {projects.map((project) => (
             <Link href={`/projects/${project.slug}`} key={project._id}>
