@@ -3,6 +3,8 @@ import '@/global.css'
 import { getPages } from '@root/sanity/sanity-utils'
 import Link from 'next/link'
 
+export const revalidate = 60 // revalidate at most every minute
+
 export const metadata = {
   title: 'Name of the site',
   description: 'Description of the site',
