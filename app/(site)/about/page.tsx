@@ -10,7 +10,7 @@ export default async function Page({ params }: Props) {
   //   console.log(`This is params slug no: ${params.slug}`)
 
   return (
-    <div className='pt-12 mx-auto  w-full flex-col items-center lg:w-4/5'>
+    <div className='my-40 pt-12 mx-auto  w-full flex-col items-center lg:w-4/5'>
       <h1>{page.title}</h1>
       <h1>{page.title}</h1>
       <h1>{page.title}</h1>
