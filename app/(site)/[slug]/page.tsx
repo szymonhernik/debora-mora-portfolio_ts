@@ -7,6 +7,8 @@ type Props = {
 
 export default async function Page({ params }: Props) {
   const page = await getPage(params.slug)
+  console.log(`This is params slug no: ${params.slug}`)
+
   return (
     <div className='pt-12 mx-auto  w-full flex-col items-center lg:w-4/5'>
       <h1>{page.title}</h1>
