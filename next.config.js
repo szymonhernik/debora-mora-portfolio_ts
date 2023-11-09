@@ -84,3 +84,11 @@ module.exports = (_phase, { defaultConfig }) => {
 
   return finalConfig
 }
+
+module.exports = {
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
+}
