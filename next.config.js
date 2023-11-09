@@ -6,10 +6,10 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
  * A fork of 'next-pwa' that has app directory support
  * @see https://github.com/shadowwalker/next-pwa/issues/424#issuecomment-1332258575
  */
-// const withPWA = require('@ducanh2912/next-pwa').default({
-//   dest: 'public',
-//   disable: process.env.NODE_ENV === 'developmeprodnt',
-// })
+const withPWA = require('@ducanh2912/next-pwa').default({
+  dest: 'public',
+  disable: process.env.NODE_ENV === 'development',
+})
 
 const nextConfig = {
   // uncomment the following snippet if using styled components
