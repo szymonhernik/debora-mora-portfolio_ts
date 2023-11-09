@@ -2,19 +2,56 @@ import { Project } from '@root/types/Project'
 import { Page } from '@root/types/Page'
 import { createClient, groq } from 'next-sanity'
 import clientConfig from './config/client-config'
+import { revalidateSecret } from './sanity.api'
 
-export async function getProjects(): Promise<Project[]> {
-  return createClient(clientConfig).fetch(
-    groq`*[_type == "project"]{
+// Helper function to centralize the fetching logic including revalidation tags
+async function sanityFetch<QueryResponse>({
+  query,
+  params = {},
+  tags = [],
+}: {
+  query: string
+  params?: Record<string, any>
+  tags: string[]
+}): Promise<QueryResponse> {
+  const client = createClient(clientConfig).withConfig({
+    useCdn: process.env.NODE_ENV === 'production' && !revalidateSecret, // Use CDN if in production and no revalidateSecret set
+  })
+
+  return client.fetch<QueryResponse>(query, params, {
+    next: {
+      tags,
+    },
+  })
+}
+
+// export async function getProjects(): Promise<Project[]> {
+//   return createClient(clientConfig).fetch(
+//     groq`*[_type == "project"]{
+//         _id,
+//         _createdAt,
+//         name,
+//         "slug":slug.current,
+//         "image": image.asset->url,
+//         url,
+//         content
+//     }`,
+//   )
+// }
+export function getProjects() {
+  const query = groq`*[_type == "project"]{
         _id,
         _createdAt,
         name,
         "slug":slug.current,
         "image": image.asset->url,
         url,
-        content
-    }`,
-  )
+        content }`
+  const tags = ['project', 'page'] // Use appropriate tags for your content
+  return sanityFetch<Project[]>({
+    query,
+    tags,
+  })
 }
 
 export async function getProject(slug: string): Promise<Project> {
