@@ -3,15 +3,19 @@ import { Page } from '@root/types/Page'
 import { createClient, groq } from 'next-sanity'
 import clientConfig from './config/client-config'
 import { revalidateSecret } from './sanity.api'
+import type { QueryParams } from '@sanity/client'
+
+const DEFAULT_PARAMS = {} as QueryParams
+const DEFAULT_TAGS = [] as string[]
 
 // Helper function to centralize the fetching logic including revalidation tags
 async function sanityFetch<QueryResponse>({
   query,
-  params = {},
-  tags = [],
+  params = DEFAULT_PARAMS,
+  tags = DEFAULT_TAGS,
 }: {
   query: string
-  params?: Record<string, any>
+  params?: QueryParams
   tags: string[]
 }): Promise<QueryResponse> {
   const client = createClient(clientConfig).withConfig({
