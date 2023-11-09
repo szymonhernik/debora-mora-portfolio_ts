@@ -47,7 +47,7 @@ export function getProjects() {
         "image": image.asset->url,
         url,
         content }`
-  const tags = ['project', 'page'] // Use appropriate tags for your content
+  const tags = ['page'] // Use appropriate tags for your content
   return sanityFetch<Project[]>({
     query,
     tags,
