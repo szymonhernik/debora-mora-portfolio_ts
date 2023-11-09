@@ -9,7 +9,7 @@ const DEFAULT_PARAMS = {} as QueryParams
 const DEFAULT_TAGS = ['project'] as string[]
 
 // Helper function to centralize the fetching logic including revalidation tags
-async function sanityFetch<QueryResponse>({
+export async function sanityFetch<QueryResponse>({
   query,
   params = DEFAULT_PARAMS,
   tags = DEFAULT_TAGS,
