@@ -23,8 +23,8 @@ export async function POST(req: NextRequest) {
 
     // If the `_type` is `page`, then all `client.fetch` calls with
     // `{next: {tags: ['page']}}` will be revalidated
-    // console.log(body._type)
-    revalidateTag('project')
+    console.log(body._type)
+    revalidateTag(body._type)
     if (body.slug) {
       revalidateTag(`${body._type}:${body.slug}`)
     }
