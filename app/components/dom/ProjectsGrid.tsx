@@ -7,7 +7,7 @@ export default async function ProjectsGrid() {
   return (
     <>
       <section className='w-5/5 flex-col items-center mx-4 mt-36  max-w-screen-2xl 2xl:mx-auto'>
-        <div className='grid grid-cols-4 gap-0 w-full h-[calc(100vh-9rem)] bg-rose-200 '>
+        <div className='grid grid-cols-4 gap-0 w-full h-[calc(100vh-9rem)]  '>
           {projects.map((project) => (
             <Link href={`/projects/${project.slug}`} key={project._id}>
               <div className='bg-slate-200 relative h-full group'>
