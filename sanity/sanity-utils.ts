@@ -6,7 +6,7 @@ import { revalidateSecret } from './sanity.api'
 import type { QueryParams } from '@sanity/client'
 
 const DEFAULT_PARAMS = {} as QueryParams
-const DEFAULT_TAGS = ['project'] as string[]
+const DEFAULT_TAGS = [] as string[]
 
 // Helper function to centralize the fetching logic including revalidation tags
 export async function sanityFetch<QueryResponse>({
