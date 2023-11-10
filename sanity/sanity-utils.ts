@@ -29,34 +29,34 @@ export async function sanityFetch<QueryResponse>({
   })
 }
 
-// export async function getProjects(): Promise<Project[]> {
-//   return createClient(clientConfig).fetch(
-//     groq`*[_type == "project"]{
-//         _id,
-//         _createdAt,
-//         name,
-//         "slug":slug.current,
-//         "image": image.asset->url,
-//         url,
-//         content
-//     }`,
-//   )
-// }
-export function getProjects() {
-  const query = groq`*[_type == "project"]{
+export async function getProjects(): Promise<Project[]> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "project"]{
         _id,
         _createdAt,
         name,
         "slug":slug.current,
         "image": image.asset->url,
         url,
-        content }`
-  const tags = ['project', 'page'] // Use appropriate tags for your content
-  return sanityFetch<Project[]>({
-    query,
-    tags,
-  })
+        content
+    }`,
+  )
 }
+// export function getProjects() {
+//   const query = groq`*[_type == "project"]{
+//         _id,
+//         _createdAt,
+//         name,
+//         "slug":slug.current,
+//         "image": image.asset->url,
+//         url,
+//         content }`
+//   const tags = ['project', 'page'] // Use appropriate tags for your content
+//   return sanityFetch<Project[]>({
+//     query,
+//     tags,
+//   })
+// }
 
 export async function getProject(slug: string): Promise<Project> {
   return createClient(clientConfig).fetch(
