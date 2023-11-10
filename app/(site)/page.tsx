@@ -9,7 +9,7 @@ export default async function Page() {
   const projects = await getProjects()
   return (
     <>
-      <Suspense fallback={<CardSkeleton />}>
+      <Suspense>
         <ProjectsGrid />
       </Suspense>
       {/* <div className='w-full text-center md:w-3/5'>
