@@ -18,6 +18,7 @@ export async function sanityFetch<QueryResponse>({
   params?: QueryParams
   tags: string[]
 }): Promise<QueryResponse> {
+  await new Promise((resolve) => setTimeout(resolve, 5000))
   const client = createClient(clientConfig).withConfig({
     useCdn: process.env.NODE_ENV === 'production' && !revalidateSecret, // Use CDN if in production and no revalidateSecret set
   })
