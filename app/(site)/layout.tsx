@@ -4,7 +4,7 @@ import '@/global.css'
 import { getPages } from '@root/sanity/sanity-utils'
 import { GeistMono } from 'geist/font'
 
-// export const revalidate = 5 // revalidate at most every minute
+// export const revalidate = 10 // revalidate at most every minute
 
 export const metadata = {
   title: 'Name of the site',
