@@ -1,3 +1,5 @@
+import 'server-only'
+
 import { Project } from '@root/types/Project'
 import { Page } from '@root/types/Page'
 import { createClient, groq } from 'next-sanity'
@@ -19,7 +21,8 @@ export async function sanityFetch<QueryResponse>({
   tags: string[]
 }): Promise<QueryResponse> {
   const client = createClient(clientConfig).withConfig({
-    useCdn: process.env.NODE_ENV === 'production' && !revalidateSecret, // Use CDN if in production and no revalidateSecret set
+    // useCdn: process.env.NODE_ENV === 'production' && !revalidateSecret, // Use CDN if in production and no revalidateSecret set
+    useCdn: false,
   })
 
   return client.fetch<QueryResponse>(query, params, {
@@ -29,34 +32,34 @@ export async function sanityFetch<QueryResponse>({
   })
 }
 
-export async function getProjects(): Promise<Project[]> {
-  return createClient(clientConfig).fetch(
-    groq`*[_type == "project"]{
-        _id,
-        _createdAt,
-        name,
-        "slug":slug.current,
-        "image": image.asset->url,
-        url,
-        content
-    }`,
-  )
-}
-// export function getProjects() {
-//   const query = groq`*[_type == "project"]{
+// export async function getProjects(): Promise<Project[]> {
+//   return createClient(clientConfig).fetch(
+//     groq`*[_type == "project"]{
 //         _id,
 //         _createdAt,
 //         name,
 //         "slug":slug.current,
 //         "image": image.asset->url,
 //         url,
-//         content }`
-//   const tags = ['project', 'page'] // Use appropriate tags for your content
-//   return sanityFetch<Project[]>({
-//     query,
-//     tags,
-//   })
+//         content
+//     }`,
+//   )
 // }
+export function getProjects() {
+  const query = groq`*[_type == "project"]{
+        _id,
+        _createdAt,
+        name,
+        "slug":slug.current,
+        "image": image.asset->url,
+        url,
+        content }`
+  const tags = ['project'] // Use appropriate tags for your content
+  return sanityFetch<Project[]>({
+    query,
+    tags,
+  })
+}
 
 export async function getProject(slug: string): Promise<Project> {
   return createClient(clientConfig).fetch(
