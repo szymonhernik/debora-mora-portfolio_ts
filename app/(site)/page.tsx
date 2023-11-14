@@ -5,13 +5,11 @@ import ProjectsGrid from '@/components/dom/ProjectsGrid'
 import { Suspense } from 'react'
 import { CardSkeleton } from '@/components/canvas/CardSkeleton'
 
-export default async function Page() {
-  const projects = await getProjects()
+export default function Page() {
   return (
     <>
-      <Suspense>
-        <ProjectsGrid />
-      </Suspense>
+      <ProjectsGrid />
+
       {/* <div className='w-full text-center md:w-3/5'>
         <Suspense>
           <Threejscomp />
