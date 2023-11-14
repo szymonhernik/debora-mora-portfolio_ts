@@ -6,7 +6,7 @@ const config = {
   projectId: projectId,
   dataset: dataset,
   apiVersion: apiVersion,
-  useCdn: true,
+  useCdn: false,
 }
 
 export default config
