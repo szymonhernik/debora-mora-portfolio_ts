@@ -35,17 +35,19 @@ export async function sanityFetch<QueryResponse>({
 }
 
 export const getProjects = unstable_cache(async (): Promise<Project[]> => {
-  return createClient(clientConfig).fetch(
-    groq`*[_type == "project"]{
+  const query = groq`*[_type == "project"]{
         _id,
         _createdAt,
         name,
         "slug":slug.current,
         "image": image.asset->url,
         url,
-        content
-    }`,
-  )
+        content }`
+  const tags = ['project'] // Use appropriate tags for your content
+  return sanityFetch<Project[]>({
+    query,
+    tags,
+  })
 })
 // export async function getProjects(): Promise<Project[]> {
 //   return createClient(clientConfig).fetch(
