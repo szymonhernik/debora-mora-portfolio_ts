@@ -8,7 +8,9 @@ import { CardSkeleton } from '@/components/canvas/CardSkeleton'
 export default function Page() {
   return (
     <>
-      <ProjectsGrid />
+      <Suspense fallback={<p>Loading feed...</p>}>
+        <ProjectsGrid />
+      </Suspense>
 
       {/* <div className='w-full text-center md:w-3/5'>
         <Suspense>

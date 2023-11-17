@@ -6,6 +6,7 @@ import { createClient, groq } from 'next-sanity'
 import clientConfig from './config/client-config'
 import { revalidateSecret } from './sanity.api'
 import type { QueryParams } from '@sanity/client'
+import { unstable_cache, unstable_noStore } from 'next/cache'
 
 const DEFAULT_PARAMS = {} as QueryParams
 const DEFAULT_TAGS = [] as string[]
@@ -20,6 +21,7 @@ export async function sanityFetch<QueryResponse>({
   params?: QueryParams
   tags: string[]
 }): Promise<QueryResponse> {
+  unstable_noStore()
   const client = createClient(clientConfig).withConfig({
     // useCdn: process.env.NODE_ENV === 'production' && !revalidateSecret, // Use CDN if in production and no revalidateSecret set
     useCdn: false,
@@ -32,6 +34,19 @@ export async function sanityFetch<QueryResponse>({
   })
 }
 
+export const getProjects = unstable_cache(async (): Promise<Project[]> => {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "project"]{
+        _id,
+        _createdAt,
+        name,
+        "slug":slug.current,
+        "image": image.asset->url,
+        url,
+        content
+    }`,
+  )
+})
 // export async function getProjects(): Promise<Project[]> {
 //   return createClient(clientConfig).fetch(
 //     groq`*[_type == "project"]{
@@ -45,21 +60,21 @@ export async function sanityFetch<QueryResponse>({
 //     }`,
 //   )
 // }
-export function getProjects() {
-  const query = groq`*[_type == "project"]{
-        _id,
-        _createdAt,
-        name,
-        "slug":slug.current,
-        "image": image.asset->url,
-        url,
-        content }`
-  const tags = ['project'] // Use appropriate tags for your content
-  return sanityFetch<Project[]>({
-    query,
-    tags,
-  })
-}
+// export async function getProjects() {
+//   const query = groq`*[_type == "project"]{
+//         _id,
+//         _createdAt,
+//         name,
+//         "slug":slug.current,
+//         "image": image.asset->url,
+//         url,
+//         content }`
+//   const tags = ['project'] // Use appropriate tags for your content
+//   return sanityFetch<Project[]>({
+//     query,
+//     tags,
+//   })
+// }
 
 export async function getProject(slug: string): Promise<Project> {
   return createClient(clientConfig).fetch(

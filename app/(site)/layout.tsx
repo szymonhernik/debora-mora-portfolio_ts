@@ -14,7 +14,6 @@ export const metadata = {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   //get all out pages
 
-  const pages = await getPages()
   return (
     <html lang='en' className={`antialiased ${GeistMono.className}`}>
       {/*
@@ -24,7 +23,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <head />
       <body className=''>
         <Header />
-        <Layout>{children}</Layout>
+        <div>{children}</div>
+        {/* <Layout>{children}</Layout> */}
       </body>
     </html>
   )
