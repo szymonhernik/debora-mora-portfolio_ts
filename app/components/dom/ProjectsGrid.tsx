@@ -19,7 +19,7 @@ export default async function ProjectsGrid() {
                       alt={project.name}
                       width={250}
                       height={100}
-                      className='object-cover opacity-0 group-hover:opacity-100 transition-opacity'
+                      className='object-cover opacity-0 z-[0] group-hover:opacity-100 transition-opacity'
                     />
                   )}
                 </div>
